@@ -1,0 +1,18 @@
+<ion-view view-title="Schedule">
+  <ion-content>
+    <h3 ng-show="myAreas.length > 0">My Areas</h3>
+    <ion-list ng-show="myAreas.length > 0">
+      <ion-item ng-repeat="area in myAreas" class="item-text-wrap" href="#/tab/schedule/{{area.area_id}}">
+      	{{area.description}}
+      	<span class="badge">{{area.area_id}}</span>
+      </ion-item>
+    </ion-list>
+  	<h3>All Areas</h3>
+    <ion-list>
+      <ion-item ng-repeat="area in areas" class="item-text-wrap" href="#/tab/schedule/{{area.area_id}}">
+      	{{area.description}}
+      	<span class="badge">{{area.area_id}}</span>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

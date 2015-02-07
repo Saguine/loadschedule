@@ -1,0 +1,34 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding">
+  	<ion-refresher pulling-text="Pull to refresh" on-refresh="refreshStatus()"></ion-refresher>
+    <div class="list card">
+      <div class="item item-divider">Status</div>
+      <div class="item item-body">
+      	<div ng-if="status.error">
+      		{{status.error}}
+      	</div>
+      	<div ng-if="status.error == null">
+	        <div ng-if="status.active_stage">
+	        	Loadshedding is currently active.
+	        	<span class="badge badge-assertive">{{status.active_stage | stage}}</span>
+	        </div>
+	        <div ng-if="status.active_stage == null">
+	        	Loadshedding is not currently active.
+	        </div>
+	        <span class="item-note" am-time-ago="status.timestamp"></span>
+      	</div>
+      </div>
+    </div>
+    
+    <div class="list card" ng-if="myAreas.length > 0">
+  	  <div class="item item-divider">My Areas</div>
+	  <div ng-repeat="areaCard in areaCards" class="item item-body" ng-class="{shedding: areaCard.nowShedding}" ui-sref="tab.schedule({areaId: areaCard.area_id})">
+	  	<h2>{{areaCard.description}}</h2>
+	  	<p>{{areaCard.outages}}</p>
+	  </div>
+	  <div ng-if="areaCards.length == 0" class="item item-body">
+	  	None of your areas are being affected today.
+	  </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,20 @@
+/* Empty. Add your own CSS if you like */
+.item-note {
+	width: 50%;
+	text-align:right;
+	margin-top:8px;
+}
+
+.about {
+	padding: 15px;
+	text-align: center;
+}
+
+.shedding {
+	background: rgba(255,0,0,0.6);
+}
+
+.full {
+	display: block;
+	width: 100%;
+}
