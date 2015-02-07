@@ -1,0 +1,10 @@
+{
+  "name": "loadschedule",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.0.0-beta.14"
+  },
+  "dependencies": {
+    "angular-moment": "~0.9.0"
+  }
+}
