@@ -110,9 +110,36 @@ angular.module('starter.controllers', [])
 })
 
 .controller('AlarmCtrl', function($scope) {
-
+	if (window.localStorage["alarms"]) {
+		$scope.alarms = JSON.parse(window.localStorage["alarms"]);
+	} else {
+		$scope.alarms = {
+			on: false,
+			stageChange: {
+				on: false,
+				type: "ANY"
+			},
+			myAreaStartLoadshedding: {
+				on: false,
+				warningTime: 30
+			},
+			batteryWatcher: {
+				on: false,
+				batteryThreshold: 55,
+				timeWindow: 30
+			}
+		}
+	}
+	
+	$scope.$watch('alarms', function(){
+		window.localStorage["alarms"] = JSON.stringify($scope.alarms);
+	}, true);
 })
 
 .controller('AboutCtrl', function($scope) {
+	
+})
+
+.controller('NotificationCtrl', function($scope) {
 	
 });

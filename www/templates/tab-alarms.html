@@ -1,7 +1,53 @@
 <ion-view view-title="Alarms">
-  <ion-content>
+  <ion-content class="padding">
     <ion-list>
- 		<ion-item>Coming soon!</ion-item>
+    	<ion-toggle ng-model="alarms.on" toggle-class="toggle-calm">Alarms on</ion-toggle>
+    	
+    	<div class="spacer-10"></div>
+    	
+    	<ion-show ng-show="alarms.on">
+	    	<ion-toggle class="item-text-wrap" ng-model="alarms.stageChange.on" toggle-class="toggle-calm">On stage change</ion-toggle>
+	    	<ion-item class="item-icon-left item-text-wrap" ng-show="alarms.stageChange.on">
+	    		<i class="icon" ng-class="{'ion-flash': alarms.stageChange.type == 'ANY', 'ion-arrow-graph-up-right': alarms.stageChange.type == 'UP', 'ion-arrow-graph-down-right': alarms.stageChange.type == 'DOWN'}"></i>
+	    		Warn me of
+	    		<select class="pull-right" ng-model="alarms.stageChange.type">
+	    			<option value="ANY">any stage changes</option>
+	    			<option value="UP">stage escalations</option>
+	    			<option value="DOWN">stage descalations</option>
+	    		</select>
+	    	</ion-item>
+	    	
+	    	<div class="spacer-10"></div>
+	    	
+	    	<ion-toggle class="item-text-wrap" ng-model="alarms.myAreaStartLoadshedding.on" toggle-class="toggle-calm">Personal area starts load shedding</ion-toggle>
+	    	<div class="range item" ng-show="alarms.myAreaStartLoadshedding.on">
+	    		<i class="icon ion-ios7-timer-outline"></i>
+	    		<input class="full" type="range" ng-model="alarms.myAreaStartLoadshedding.warningTime" min="5" max="60" step="5">
+	    		<i class="icon ion-ios7-timer"></i> 
+	    	</div>
+	    	<ion-item class="item-text-wrap" ng-show="alarms.myAreaStartLoadshedding.on">
+	    		Warn me <b>{{alarms.myAreaStartLoadshedding.warningTime}}</b> minutes before. 
+	    		<p><b>Note</b>: this may be less reliable if there are several rapid stage changes.</p>
+	    	</ion-item>
+	    	
+	    	<div class="spacer-10"></div>
+	    	
+	    	<ion-toggle class="item-text-wrap" ng-model="alarms.batteryWatcher.on" toggle-class="toggle-calm">Battery watcher</ion-toggle>
+	    	<div class="range item" ng-show="alarms.batteryWatcher.on">
+	    		<i class="icon ion-battery-low"></i>
+	    		<input class="full" type="range" ng-model="alarms.batteryWatcher.batteryThreshold" min="10" max="100" step="5">
+	    		<i class="icon ion-battery-full"></i> 
+	    	</div>
+	    	<div class="range item" ng-show="alarms.batteryWatcher.on">
+	    		<i class="icon ion-ios7-timer-outline"></i>
+	    		<input class="full" type="range" ng-model="alarms.batteryWatcher.timeWindow" min="5" max="60" step="5">
+	    		<i class="icon ion-ios7-timer"></i> 
+	    	</div>
+	    	<ion-item class="item-text-wrap" ng-show="alarms.batteryWatcher.on">
+	    		Warn me when battery is less than <b>{{alarms.batteryWatcher.batteryThreshold}}%</b> within
+	    		<b>{{alarms.batteryWatcher.timeWindow}}</b> minutes of loadshedding in one of my personal areas.
+	    	</ion-item>
+    	</ion-show>
     </ion-list>
   </ion-content>
 </ion-view>
