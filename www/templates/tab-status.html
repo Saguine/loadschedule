@@ -22,7 +22,7 @@
     
     <div class="list card" ng-if="myAreas.length > 0">
   	  <div class="item item-divider">My Areas</div>
-	  <div ng-repeat="areaCard in areaCards" class="item item-body" ng-class="{shedding: areaCard.nowShedding}" ui-sref="tab.schedule({areaId: areaCard.area_id})">
+	  <div ng-repeat="areaCard in areaCards" class="item item-body" ng-class="{'shedding': areaCard.nowShedding, 'upcoming': areaCard.upcoming}" ui-sref="tab.schedule({areaId: areaCard.area_id})">
 	  	<h2>{{areaCard.description}}</h2>
 	  	<p>{{areaCard.outages}}</p>
 	  </div>

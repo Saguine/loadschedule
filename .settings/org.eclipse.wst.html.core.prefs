@@ -1,0 +1,4 @@
+attrNamesToIgnore=ion-*,ng-*
+eclipse.preferences.version=1
+ignoreAttrNames=true
+use-project-settings=true
